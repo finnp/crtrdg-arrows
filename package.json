@@ -1,0 +1,30 @@
+{
+  "name": "crtrdg-arrows",
+  "version": "0.0.0",
+  "description": "Arrow keys handling",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Finn Pauls",
+  "license": "MIT",
+  "dependencies": {
+    "inherits": "~2.0.1"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/finnp/crtrdg-arrows.git"
+  },
+  "keywords": [
+    "keys",
+    "games",
+    "arrows",
+    "crtrdg",
+    "arrow",
+    "keyboard"
+  ],
+  "bugs": {
+    "url": "https://github.com/finnp/crtrdg-arrows/issues"
+  }
+}
