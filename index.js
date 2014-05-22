@@ -8,23 +8,19 @@ function Arrows(){
 
   this.arrows = {
     left: {
-      keyDown: false,
-      keyCode: 36
+      keyDown: false
     },
     right: {
-      keyDown: false,
-      keyCode: 37
+      keyDown: false
     },
     up: {
-      keyDown: false,
-      keyCode: 39
+      keyDown: false
     },
     down: {
-      keyDown: false,
-      keyCode: 40
+      keyDown: false
     }
   };
-
+  this.useArrowKeys();
   this.init();
 }
 
@@ -67,7 +63,7 @@ Arrows.prototype.setArrowKeyCodes = function (left, right, up, down) {
 }
 
 Arrows.prototype.useArrowKeys = function () {
-  this.setArrowKeyCodes(36, 37, 39, 40);
+  this.setArrowKeyCodes(37, 39, 38, 40);
 }
 
 Arrows.prototype.useWASD = function () {
