@@ -2,7 +2,7 @@ var EventEmitter = require('events').EventEmitter;
 var inherits = require('inherits');
 
 module.exports = Arrows;
-inherits(Keyboard, EventEmitter);
+inherits(Arrows, EventEmitter);
 
 function Arrows(){
 
@@ -23,17 +23,17 @@ function Arrows(){
       keyDown: false,
       keyCode: 40
     }
-  }
-  
+  };
+
   this.init();
 }
 
-Keyboard.prototype.init = function(){
+Arrows.prototype.init = function(){
   var self = this;
 
   document.addEventListener('keydown', function(e){
     e.preventDefault();
-    for (direction in self.arrows) {
+    for (var direction in self.arrows) {
       var arrow = self.arrows[direction];
       if (keyCode == arrow.keyCode) {
         self.emit(direction, { keyCode: keyCode });
@@ -45,7 +45,7 @@ Keyboard.prototype.init = function(){
   document.addEventListener('keyup', function(e){
     e.preventDefault();
 
-    for (direction in self.arrows) {
+    for (var direction in self.arrows) {
       var arrow = self.arrows[direction];
       if (keyCode == self.arrows[direction].keyCode) {
         self.emit(direction + 'Up', { keyCode: keyCode });
@@ -55,21 +55,21 @@ Keyboard.prototype.init = function(){
   }, false);
 };
 
-Keyboard.prototype.isDown = function (direction) {
+Arrows.prototype.isDown = function (direction) {
   return this.arrows[direction].keyDown;
 }
 
-Keyboard.prototype.setArrowKeyCodes = function (left, right, up, down) {
+Arrows.prototype.setArrowKeyCodes = function (left, right, up, down) {
   this.arrows.left.keyCode = left;
   this.arrows.right.keyCode = right;
   this.arrows.up.keyCode = up;
   this.arrows.down.keyCode = down;
 }
 
-Keyboard.prototype.useArrowKeys = function () {
+Arrows.prototype.useArrowKeys = function () {
   this.setArrowKeyCodes(36, 37, 39, 40);
 }
 
-Keyboard.prototype.useWASD = function () {
+Arrows.prototype.useWASD = function () {
   this.setArrowKeyCodes(65, 68, 87, 83);
 }
