@@ -49,7 +49,7 @@ Arrows.prototype.init = function(){
       var arrow = self.arrows[direction];
       if (e.keyCode == self.arrows[direction].keyCode) {
         self.emit(direction + 'Up', { keyCode: e.keyCode });
-        arrow.keyDown = true;
+        arrow.keyDown = false;
       }
     }
   }, false);
