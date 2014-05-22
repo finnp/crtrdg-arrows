@@ -20,7 +20,7 @@ function Arrows(){
       keyDown: false
     }
   };
-  this.useArrowKeys();
+  this.useArrowKeys(); // adds keyCodes to this.arrows
   this.init();
 }
 
@@ -32,7 +32,7 @@ Arrows.prototype.init = function(){
     for (var direction in self.arrows) {
       var arrow = self.arrows[direction];
       if (e.keyCode == arrow.keyCode) {
-        self.emit(direction, { keyCode: e.keyCode });
+        self.emit(direction, e);
         arrow.keyDown = true;
       }
     }
@@ -44,7 +44,7 @@ Arrows.prototype.init = function(){
     for (var direction in self.arrows) {
       var arrow = self.arrows[direction];
       if (e.keyCode == self.arrows[direction].keyCode) {
-        self.emit(direction + 'Up', { keyCode: e.keyCode });
+        self.emit(direction + 'Up', e);
         arrow.keyDown = false;
       }
     }
@@ -53,6 +53,16 @@ Arrows.prototype.init = function(){
 
 Arrows.prototype.isDown = function (direction) {
   return this.arrows[direction].keyDown;
+}
+
+Arrows.prototype.down = function () {
+  var arrows = [];
+  for (arrow in this.arrows) {
+    if (this.arrows[arrow].keyDown) {
+      arrows.push(arrow);
+    }
+  }
+  return arrows;
 }
 
 Arrows.prototype.setArrowKeyCodes = function (left, right, up, down) {
