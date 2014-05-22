@@ -35,7 +35,7 @@ Arrows.prototype.init = function(){
     e.preventDefault();
     for (var direction in self.arrows) {
       var arrow = self.arrows[direction];
-      if (keyCode == arrow.keyCode) {
+      if (e.keyCode == arrow.keyCode) {
         self.emit(direction, { keyCode: keyCode });
         arrow.keyDown = true;
       }
@@ -47,7 +47,7 @@ Arrows.prototype.init = function(){
 
     for (var direction in self.arrows) {
       var arrow = self.arrows[direction];
-      if (keyCode == self.arrows[direction].keyCode) {
+      if (e.keyCode == self.arrows[direction].keyCode) {
         self.emit(direction + 'Up', { keyCode: keyCode });
         arrow.keyDown = true;
       }
