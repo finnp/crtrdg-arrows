@@ -28,10 +28,10 @@ Arrows.prototype.init = function(){
   var self = this;
 
   document.addEventListener('keydown', function(e){
-    e.preventDefault();
     for (var direction in self.arrows) {
       var arrow = self.arrows[direction];
       if (e.keyCode === arrow.keyCode) {
+        e.preventDefault();
         arrow.keyDown = true;
         self.emit(direction, e);
       }
