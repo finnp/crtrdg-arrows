@@ -1,5 +1,8 @@
 # crtrdg-arrow
 
+[![browser support](https://ci.testling.com/finnp/crtrdg-arrows.png)
+](https://ci.testling.com/finnp/crtrdg-arrows)
+
 This module is designed for easy arrow control together with [crtrdg](http://crtrdg.com/).
 It is kind of like a more specific [crtrdg-keyboard](https://github.com/sethvincent/crtrdg-keyboard)
 only for the use with self defined Arrow keys.

@@ -1,10 +1,11 @@
 var Arrows = require('./index.js');
 
-// simulate events
-var EventEmitter = require('events').EventEmitter;
-document = new EventEmitter();
+var simkey = require('simkey');
 
-document.addEventListener = document.on;
+// simulate keyboard events
+function simulateKeyEvent(type, keyCode) {
+  simkey(document, {'type': type}, keyCode);
+}
 
 // init
 var arrows = new Arrows();
@@ -35,10 +36,10 @@ test('Arrows', function (t) {
       t.equal(e.keyCode, down, 'down down');
     });
 
-    document.emit('keydown', {keyCode: left, preventDefault: function () {}});
-    document.emit('keydown', {keyCode: down, preventDefault: function () {}});
-    document.emit('keydown', {keyCode: w, preventDefault: function () {}});
-    document.emit('keydown', {keyCode: a, preventDefault: function () {}});
+    simulateKeyEvent('keydown', left);
+    simulateKeyEvent('keydown', down);
+    simulateKeyEvent('keydown', w);
+    simulateKeyEvent('keydown', a);
   });
 
   t.test('isDown: should know whether a key is down', function (t) {
@@ -59,13 +60,13 @@ test('Arrows', function (t) {
   t.test('useWASD: changing the keys should work too', function (t) {
     t.plan(2);
     arrows.removeAllListeners();
-    arrows.on('up', function (e) {
-      t.equal(e.keyCode, w, 'w up');
-    });
     arrows.useWASD();
-    document.emit('keydown', {keyCode: up, preventDefault: function () {}});
-    document.emit('keydown', {keyCode: w, preventDefault: function () {}});
-    t.ok(arrows.isDown('up'), 'key is up');
+    arrows.on('up', function (e) {
+      t.equal(e.keyCode, w, 'w up pressed');
+      t.ok(arrows.isDown('up'), 'key up is down');
+    });
+    simulateKeyEvent('keydown', left);
+    simulateKeyEvent('keydown', w);
   });
 
   t.test('on: keyup events', function (t) {
@@ -73,8 +74,8 @@ test('Arrows', function (t) {
     arrows.on('upUp', function (e) {
       t.equal(e.keyCode, w, 'w up');
     });
-    document.emit('keyup', {keyCode: up, preventDefault: function () {}});
-    document.emit('keyup', {keyCode: w, preventDefault: function () {}});
+    simulateKeyEvent('keyup', up);
+    simulateKeyEvent('keyup', w);
   })
 
 });

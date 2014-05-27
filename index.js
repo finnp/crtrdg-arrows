@@ -31,16 +31,15 @@ Arrows.prototype.init = function(){
     e.preventDefault();
     for (var direction in self.arrows) {
       var arrow = self.arrows[direction];
-      if (e.keyCode == arrow.keyCode) {
-        self.emit(direction, e);
+      if (e.keyCode === arrow.keyCode) {
         arrow.keyDown = true;
+        self.emit(direction, e);
       }
     }
   }, false);
 
   document.addEventListener('keyup', function(e){
     e.preventDefault();
-
     for (var direction in self.arrows) {
       var arrow = self.arrows[direction];
       if (e.keyCode == self.arrows[direction].keyCode) {
@@ -67,9 +66,13 @@ Arrows.prototype.down = function () {
 
 Arrows.prototype.setArrowKeyCodes = function (left, right, up, down) {
   this.arrows.left.keyCode = left;
+  this.arrows.left.keyDown = false;
   this.arrows.right.keyCode = right;
+  this.arrows.right.keyDown = false;
   this.arrows.up.keyCode = up;
+  this.arrows.up.keyDown = false;
   this.arrows.down.keyCode = down;
+  this.arrows.down.keyDown = false;
 }
 
 Arrows.prototype.useArrowKeys = function () {
